@@ -1,12 +1,12 @@
-import config from "../config.json";
-import jwt from "jsonwebtoken";
-import bcrypt, { hash } from "bcryptjs";
-import crypto from "crypto";
-import sendEmail from "../_helpers/send-email";
-import db from "../_helpers/db";
-import Role from "../_helpers/role";
+//import config from "../config.js";
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const crypto = require("crypto");
+const sendEmail = require("../_helpers/send-email.js");
+const db = require("../_helpers/db.js");
+const Role = require("../_helpers/role.js");
 
-export default {
+module.exports = {
   authenticate,
   refreshToken,
   revokeToken,
@@ -217,7 +217,8 @@ function hash(password) {
 }
 
 function generateJwtToken(account) {
-  return jwt.sign({ sub: account.id, id: account.id }, config.secret, {
+  const secret = process.env.SECRET;
+  return jwt.sign({ sub: account.id, id: account.id }, secret, {
     expiresIn: "15m",
   });
 }

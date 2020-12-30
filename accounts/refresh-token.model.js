@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
@@ -21,4 +21,4 @@ schema.virtual("isActive").get(function () {
   return !this.revoked && !this.isExpired;
 });
 
-export default mongoose.model("RefreshToken", schema);
+module.exports = mongoose.model("RefreshToken", schema);

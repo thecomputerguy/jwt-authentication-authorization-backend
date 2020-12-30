@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   Admin: "Admin",
   User: "User",
 };

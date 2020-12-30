@@ -1,13 +1,15 @@
-import jwt from "express-jwt";
-import { secret } from "config.json";
-import db from "_helpers/db";
+const jwt = require("express-jwt");
+//import config from "../config.js";
+const db = require("../_helpers/db.js");
 
-export default authorize;
+module.exports = authorize;
 
 function authorize(roles = []) {
   if (typeof roles === "string") {
     roles = [roles];
   }
+
+  const secret = process.env.SECRET;
 
   return [
     jwt({ secret, algorithms: ["HS256"] }),

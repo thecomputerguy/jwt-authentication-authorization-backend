@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
@@ -34,4 +34,4 @@ schema.set("toJSON", {
   },
 });
 
-export default mongoose.model("Account", schema);
+module.exports = mongoose.model("Account", schema);

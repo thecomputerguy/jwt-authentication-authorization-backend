@@ -15,4 +15,4 @@ function validateRequest(req, next, schema) {
   }
 }
 
-export default validateRequest;
+module.exports = validateRequest;

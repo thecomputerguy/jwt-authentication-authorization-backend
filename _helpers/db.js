@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
-import config from "../config.json";
-import Account from "../accounts/account.model";
-import RefreshToken from "../accounts/refresh-token.model";
+const mongoose = require("mongoose");
+//import config from "../config.js";
+const Account = require("../accounts/account.model.js");
+const RefreshToken = require("../accounts/refresh-token.model.js");
 
 const connectionOptions = {
   useCreateIndex: true,
@@ -9,12 +9,10 @@ const connectionOptions = {
   useUnifiedTopology: true,
   useFindAndModify: false,
 };
-mongoose.connect(
-  process.env.MONGODB_URI || config.mongodbConnectionString,
-  connectionOptions
-);
+console.log(process.env.DB_CONNECTION_STRING);
+mongoose.connect(process.env.DB_CONNECTION_STRING, connectionOptions);
 
-export default {
+module.exports = {
   Account: Account,
   RefreshToken: RefreshToken,
   isValidId,

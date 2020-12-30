@@ -10,9 +10,10 @@ function authorize(roles = []) {
   }
 
   const secret = process.env.SECRET;
+  const algorithm = process.env.ALGORITHM;
 
   return [
-    jwt({ secret, algorithms: ["HS256"] }),
+    jwt({ secret, algorithms: [algorithm] }),
     async (req, res, next) => {
       const account = await db.Account.findById(req.user.id);
       const refreshTokens = await db.RefreshToken.find({ account: account.id });
